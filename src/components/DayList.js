@@ -3,7 +3,7 @@ import DayListItem from "components/DayListItem";
 
 export default function DayList({ days, value, onChange }) {
   
-  const daylist = days.map(({ id, name, spots }) => {
+  const dayList = days.map(({ id, name, spots }) => {
 
     return (
         <DayListItem
@@ -18,7 +18,7 @@ export default function DayList({ days, value, onChange }) {
 
   return (
     <ul>
-      {daylist}
+      {dayList}
     </ul>
   );
 

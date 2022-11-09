@@ -4,8 +4,6 @@ import "components/InterviewerList.scss";
 
 export default function InterviewerList({ interviewers, value, onChange }) {
 
-
-
   const interviewerList = interviewers.map(({ id, name, avatar }) => {
 
     return (
