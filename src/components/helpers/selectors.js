@@ -2,9 +2,9 @@ export function getAppointmentsForDay(state, day) {
 
   let result = [];
 
-  for (let date of state.days) {
-    if (day === date.name) {
-      for (let i of date.appointments) {
+  for (let item of state.days) {
+    if (day === item.name) {
+      for (let i of item.appointments) {
         result.push(state.appointments[i])
       }
     }
@@ -22,4 +22,20 @@ export function getInterview(state, interview) {
     student: interview.student,
     interviewer: state.interviewers[interview.interviewer]
   }
+}
+
+export function getInterviewersForDay(state, day) {
+  
+  let result = [];
+
+  for (let item of state.days) {
+    if (day === item.name) {
+      for (let i of item.interviewers) {
+        result.push(state.interviewers[i])
+      }
+    }
+  }
+
+  return result;
+
 }
