@@ -6,6 +6,7 @@ import Empty from "./Empty";
 import Form from "./Form";
 import Status from "./Status";
 import Confirm from "./Confirm";
+import Error from "./Error";
 import useVisualMode from "hooks/useVisualMode";
 
 export default function Appointment(props) {
@@ -17,6 +18,8 @@ export default function Appointment(props) {
   const CONFIRM = "CONFIRM";
   const DELETING = "DELETING";
   const EDIT = "EDIT";
+  const ERROR_SAVE = "ERROR_SAVE";
+  const ERROR_DELETE = "ERROR_DELETE";
 
   const { mode, transition, back } = useVisualMode(
     props.interview ? SHOW : EMPTY
@@ -33,13 +36,15 @@ export default function Appointment(props) {
     props
       .bookInterview(props.id, interview)
       .then(() => transition(SHOW))
-      .catch(error => console.log("Error:", error));
+      .catch(error => transition(ERROR_SAVE, true));
     }
 
-  const deleteInterview = () => {
-    transition(DELETING)
-    props.cancelInterview(props.id)
-    transition(EMPTY)
+  const deleteInterview = (event) => {
+    transition(DELETING, true)
+    props
+      .cancelInterview(props.id)
+      .then(() => transition(EMPTY))
+      .catch(error => transition(ERROR_DELETE, true));
   }
 
 
@@ -83,6 +88,8 @@ export default function Appointment(props) {
             onSave={save}
           />
         )}
+        {mode === ERROR_SAVE && <Error message={"Could not save"}/>}
+        {mode === ERROR_DELETE && <Error message={"Could not delete"}/>}
       </>
     </article>
   );
