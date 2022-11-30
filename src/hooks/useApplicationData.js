@@ -13,7 +13,7 @@ export default function useApplicationData() {
 
   const setDay = day => setState({ ...state, day });
 
-  const bookInterview = (id, interview) => {
+  const bookInterview = async (id, interview) => {
 
     const appointment = {
       ...state.appointments[id],
@@ -35,18 +35,18 @@ export default function useApplicationData() {
       }
     })
 
-    return axios.put(`/api/appointments/${id}`, appointment)
-      .then(() => {
-        setState((prev) => (
-          { ...prev,
-            appointments,
-            days }
-          ));
-        })
+    await axios.put(`/api/appointments/${id}`, appointment);
+    setState((prev) => (
+      {
+        ...prev,
+        appointments,
+        days
+      }
+    ));
   
   }
 
-  const cancelInterview = (id) => {
+  const cancelInterview = async (id) => {
 
     const appointment = {
       ...state.appointments[id],
@@ -68,10 +68,8 @@ export default function useApplicationData() {
       }
     })
 
-    return axios.delete(`/api/appointments/${id}`, appointment)
-    .then(() => {
-      setState((prev) => ({...prev, appointments, days }))
-    })
+    await axios.delete(`/api/appointments/${id}`, appointment);
+    setState((prev) => ({ ...prev, appointments, days }));
   }
 
   useEffect(() => {

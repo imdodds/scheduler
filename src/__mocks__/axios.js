@@ -81,5 +81,24 @@ export default {
       });
     }
 
+  }),
+
+  put: jest.fn(url => {
+    if (url === "/api/appointments") {
+      return Promise.resolve({
+        status: 204,
+        StatusText: "OK"
+      })
+    }
+  }),
+
+  delete: jest.fn(url => {
+    if (url === "/api/appointments") {
+      return Promise.resolve({
+        status: 204,
+        StatusText: "No Content"
+      })
+    }
   })
+
 }
