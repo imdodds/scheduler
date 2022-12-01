@@ -23,7 +23,7 @@ export default function DayListItem({ name, spots, selected, setDay }) {
     data-testid="day"
   >
     <h2 className="text--regular">{name}</h2>
-    <h3 className="text--light">{formatSpots()}</h3>
+    <h3 className="text--light">{formatSpots(spots)}</h3>
   </li>
   );
 }
