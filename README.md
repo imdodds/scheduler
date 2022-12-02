@@ -24,3 +24,13 @@ npm test
 ```sh
 npm run storybook
 ```
+
+## Screenshots
+
+!["Scheduler-Empty"](https://github.com/imdodds/scheduler/blob/master/docs/Scheduler-Empty.png?raw=true)
+
+!["Scheduler-Save"](https://github.com/imdodds/scheduler/blob/master/docs/Scheduler-Save.png?raw=true)
+
+!["Scheduler-Booked"](https://github.com/imdodds/scheduler/blob/master/docs/Scheduler-Booked.png?raw=true)
+
+!["Scheduler-Delete"](https://github.com/imdodds/scheduler/blob/master/docs/Scheduler-Delete.png?raw=true)
