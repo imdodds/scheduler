@@ -53,7 +53,7 @@ export default function Appointment(props) {
       <Header time={props.time}/>
       <>
         {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
-        {mode === SHOW && (
+        {mode === SHOW && props.interview && (
           <Show
             student={props.interview.student}
             interviewer={props.interview.interviewer}
@@ -66,7 +66,7 @@ export default function Appointment(props) {
             name=""
             interviewer=""
             interviewers={props.interviewers}
-            onCancel={() => back(EMPTY)}
+            onCancel={() => back()}
             onSave={save}
           />
         )}
@@ -81,15 +81,25 @@ export default function Appointment(props) {
         {mode === DELETING && <Status message={"Deleting..."}/>}
         {mode === EDIT && (
           <Form
-            name={props.name}
-            interviewer={props.interview}
+            name={props.interview.name}
+            interviewer={props.interview.interviewer.id}
             interviewers={props.interviewers}
-            onCancel={() => back(EMPTY)}
+            onCancel={() => back()}
             onSave={save}
           />
         )}
-        {mode === ERROR_SAVE && <Error message={"Could not save"}/>}
-        {mode === ERROR_DELETE && <Error message={"Could not delete"}/>}
+        {mode === ERROR_SAVE && (
+          <Error
+            message={"Could not save"}
+            onClose={() => back()}
+          />
+        )}
+        {mode === ERROR_DELETE && (
+          <Error
+            message={"Could not delete"}
+            onClose={() => back()}
+          />
+        )}
       </>
     </article>
   );
