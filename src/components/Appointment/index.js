@@ -66,8 +66,8 @@ export default function Appointment(props) {
             name=""
             interviewer=""
             interviewers={props.interviewers}
-            onCancel={() => back()}
-            onSave={save}
+            onCancel={ back }
+            onSave={ save}
           />
         )}
         {mode === SAVING && <Status message={"Saving..."}/>}
@@ -84,20 +84,20 @@ export default function Appointment(props) {
             name={props.interview.name}
             interviewer={props.interview.interviewer.id}
             interviewers={props.interviewers}
-            onCancel={() => back()}
-            onSave={save}
+            onCancel={ back }
+            onSave={ save }
           />
         )}
         {mode === ERROR_SAVE && (
           <Error
             message={"Could not save"}
-            onClose={() => back()}
+            onClose={ back }
           />
         )}
         {mode === ERROR_DELETE && (
           <Error
             message={"Could not delete"}
-            onClose={() => back()}
+            onClose={ back }
           />
         )}
       </>
